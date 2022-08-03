@@ -1,0 +1,26 @@
+{
+    "name": "comp229-base-2022",
+    "version": "1.0.0",
+    "description": "Base project for Centennial College COMP229 course. ",
+    "main": "index.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/CENT-COL/COMP229-BASE.git"
+    },
+    "keywords": [
+      "COMP220",
+      "ADVANCED",
+      "WEB",
+      "DEVELOPMENT"
+    ],
+    "author": "THIAGO CASTILHO",
+    "license": "Apache-2.0",
+    "bugs": {
+      "url": "https://github.com/CENT-COL/COMP229-BASE/issues"
+    },
+    "homepage": "https://github.com/CENT-COL/COMP229-BASE#readme"
+  }
+  
