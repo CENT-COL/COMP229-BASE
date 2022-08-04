@@ -1,4 +1,6 @@
 import express from 'express';
+import * as connectEnsureLogin from 'connect-ensure-login';
+
 
 const router = express.Router();
 
@@ -6,7 +8,7 @@ router.get('/', (req, res) => {
     return res.render('index', {title:'Home'});
 });
 
-router.get('/home', (req, res) => {
+router.get('/secret', connectEnsureLogin.ensureLoggedIn('/auth/login'), (req, res) => {
     return res.render('index', {title:'Home'});
 });
 
@@ -27,21 +29,3 @@ router.get('/contact', (req, res) => {
 });
 
 export default router;
-
-
-
-
-
-// router.post('/', (req, res) => {
-//     return res.send('Received a POST HTTP method')
-// });
-// router.put('/', (req, res) => {
-//     return res.send('Received a PUT HTTP method')
-// });
-// router.delete('/', (req, res) => {
-//     return res.send('Received a DELETE HTTP method')
-// });
-
-// router.get('/session', (req, res) => {
-//     return res.send(req.context.models.users[req.context.me.id]);
-// } )
