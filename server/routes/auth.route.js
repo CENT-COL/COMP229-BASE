@@ -1,6 +1,5 @@
 import { Router } from "express";
 import { displayLoginPage, displayRegistrationPage, logout, processRegistrationPage } from "../controllers/auth.controller.js";
-import UserModel from "../models/user.model.js";
 import { authLocal } from "../services/auth.services.js";
 
 const router = Router();
