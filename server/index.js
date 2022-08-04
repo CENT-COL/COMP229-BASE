@@ -4,8 +4,8 @@ import cors from 'cors';
 import mongoose from 'mongoose';
 import passport from 'passport';
 import session from 'express-session';
-import UserModel from './models/user.js';
-import {HttpError} from 'http-error';
+import flash from 'connect-flash';
+import { HttpError } from 'http-error';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 
@@ -22,6 +22,7 @@ app.set('view engine', 'ejs');
 
 // Setup Middlewares
 app.use(cors());
+app.use(flash());
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(express.static(`${__dirname}/public`));
@@ -37,16 +38,15 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-// Set Up Passport Strategy
-passport.use(UserModel.createStrategy());
-passport.serializeUser(UserModel.serializeUser());
-passport.deserializeUser(UserModel.deserializeUser());
+
+// passport.serializeUser(UserModel.serializeUser());
+// passport.deserializeUser(UserModel.deserializeUser());
 
 // Setup Routes
 
-import indexRouter from '../server/routes/index.js';
-import authRouter from '../server/routes/auth.js';
-import bookRouter from '../server/routes/book.js';
+import indexRouter from './routes/index.route.js';
+import authRouter from './routes/auth.route.js';
+import bookRouter from './routes/book.route.js';
 
 app.use('/', indexRouter);
 app.use('/auth', authRouter);

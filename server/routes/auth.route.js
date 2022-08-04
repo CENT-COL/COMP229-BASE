@@ -1,10 +1,11 @@
 import { Router } from "express";
-import passport from "passport";
+import { authLocal } from "../services/auth.services.js";
 
 const router = Router();
 
+
 router.get('/login', (req, res) => {
-    res.render('auth/login', { title: 'Login'})
+    res.render('auth/login', { title: 'Login', messages: req.flash('error'), displayName: req.user ? req.user.displayName : ''})
 });
 
 router.get('/logout', (req, res) => {
@@ -17,15 +18,8 @@ router.get('/logout', (req, res) => {
     })
   });
 
-router.post(
-    '/login',
-    passport.authenticate('local', {
-      failureRedirect: '/login',
-      successRedirect: '/secret',
-    }),
-    (req, res) => {
-      console.log(req.user);
-    }
-  );
+router.post('/login', authLocal, (req, res) => {
+  return res.redirect('/');
+});
 
 export default router;
