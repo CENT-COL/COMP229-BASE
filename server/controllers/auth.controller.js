@@ -1,3 +1,5 @@
+import UserModel from '../models/user.model.js'
+
 export const displayLoginPage = (req, res) => {
     res.render('auth/login', { title: 'Login', messages: req.flash('error'), displayName: req.user ? req.user.displayName : '' })
 };
