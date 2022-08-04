@@ -4,6 +4,16 @@ import { Strategy as JWTStrategy, ExtractJwt } from "passport-jwt";
 import UserModel from '../models/user.model.js';
 
 
+// Setup Passport Serialization for Sessions
+passport.serializeUser((user, done) => {
+    done(null, user);
+});
+
+passport.deserializeUser( async (user, done) => {
+    const _user = await UserModel.findById(user._id);
+    done(null, _user);
+})
+
 // Setup Passport Local Strategy 
 const localOpts = {
     usernameField: 'username',
@@ -26,8 +36,7 @@ export const authLocal = passport.authenticate('local', {
     session:true,
     failureFlash:true,
     successRedirect: '/',    
-})
-
+});
 
 // Setup Passport JWT Strategy 
 const jwtOpts = {

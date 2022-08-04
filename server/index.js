@@ -38,10 +38,6 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-
-// passport.serializeUser(UserModel.serializeUser());
-// passport.deserializeUser(UserModel.deserializeUser());
-
 // Setup Routes
 
 import indexRouter from './routes/index.route.js';
@@ -50,7 +46,7 @@ import bookRouter from './routes/book.route.js';
 
 app.use('/', indexRouter);
 app.use('/auth', authRouter);
-app.use('/booklist', bookRouter);
+app.use('/bookstore', bookRouter);
 
 // error handling
 app.use((req, res, next) => {    

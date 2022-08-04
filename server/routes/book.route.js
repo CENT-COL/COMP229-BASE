@@ -1,16 +1,9 @@
 import { Router } from 'express';
-import BookModel from '../models/book.model.js';
+import { displayBookstore } from '../controllers/book.controller.js';
 
 const router = Router();
 
-router.get('/', (req, res, next) => {
-    BookModel.find((err, bookList) => {
-        if(err)
-            return console.error(err);
-
-        res.render('book/index', {title: 'Book List', BookList: bookList});
-    })
-});
+router.get('/', displayBookstore);
 
 export default router;
 
